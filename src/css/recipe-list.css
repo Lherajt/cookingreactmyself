@@ -1,0 +1,9 @@
+.recipe-list {
+    position: absolute;
+    width: 50%;
+    max-width: 50%;
+    padding: 12px;
+    left: 0;
+    top: 0;
+    border-right: solid 1px var(--color-light);
+}

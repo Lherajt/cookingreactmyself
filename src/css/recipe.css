@@ -1,0 +1,32 @@
+.recipe {
+    display: grid;
+    grid-template-columns: 100px auto;
+    padding: 8px 0;
+    border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.recipe * {
+    padding: 2px;
+}
+
+/* .recipe-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} */
+
+.recipe-name {
+    font-size: 24px;
+}
+
+.recipe-buttons {
+    text-align: right;
+}
+
+.edit-button {
+    background: hsl(39, 100%, 62%);
+}
+
+.delete-button {
+    background: hsl(19, 100%, 62%);
+}

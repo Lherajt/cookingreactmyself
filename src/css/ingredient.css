@@ -1,0 +1,11 @@
+
+
+.ingredient-delete-button {
+    background: hsl(19, 100%, 62%);
+}
+
+.ingredient-flex {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: space-around;
+}
