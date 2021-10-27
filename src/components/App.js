@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import RecipeList from './RecipeList'
-
-
-
+import { v4 as uuidv4 } from 'uuid';
 import '../css/app.css'
+
+let RecipeContext = React.createContext()
+
 
 
 
@@ -11,9 +12,14 @@ import '../css/app.css'
 function App() {
   const [recipes, setRecipes] = useState(newRecipes)
 
+  RecipeContext = {
+    handleRecipeAdd,
+    handleRecipeDelete
+  }
+
   function handleRecipeAdd(){
     const newRecipe = {
-      id: 3,
+      id: uuidv4(),
       name: 'Recipe Name 3',
       cookTime: '3:45',
       servings: '3',
@@ -29,22 +35,30 @@ function App() {
         }
       ]
     }
-    setRecipes(...recipes, ...newRecipe)
+    // Need to setRecipes as an array
+    setRecipes([...recipes, newRecipe])
   }
 
-
+  function handleRecipeDelete(id){
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
+  }
 
   return (
     <>
       <div>
-        <RecipeList 
-        // Not rendering more than once => doesn't need key
-        recipes={recipes}
-        handleRecipeAdd={handleRecipeAdd}
-        // {...newRecipes}
-        // key={newRecipes.id}
+        <RecipeContext.Provider value={RecipeContext}>
 
-        />
+          <RecipeList 
+          // Not rendering more than once => doesn't need key
+          recipes={recipes}
+          handleRecipeAdd={handleRecipeAdd}
+          handleRecipeDelete={handleRecipeDelete}
+          // {...newRecipes}
+          // key={newRecipes.id}
+
+          />
+        </RecipeContext.Provider>
+        
       </div>
     </>
   );
@@ -53,7 +67,7 @@ function App() {
 }
 const newRecipes = [
   {
-    id: 1,
+    id: uuidv4(),
     name: 'Recipe Name',
     cookTime: '1:45',
     servings: '1',
@@ -71,7 +85,7 @@ const newRecipes = [
     ]
   },
   {
-    id: 2,
+    id: uuidv4(),
     name: 'Recipe Name 2',
     cookTime: '2:45',
     servings: '2',

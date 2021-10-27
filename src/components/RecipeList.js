@@ -2,7 +2,7 @@ import React from 'react'
 import Recipe from './Recipe'
 
 
-export default function RecipeList({ recipes, handleRecipeAdd }) {
+export default function RecipeList({ recipes, handleRecipeAdd, handleRecipeDelete }) {
 
     // First return for function
     return (
@@ -19,6 +19,7 @@ export default function RecipeList({ recipes, handleRecipeAdd }) {
                     <Recipe
                         key={recipe.id}
                         {...recipe}
+                        handleRecipeDelete={handleRecipeDelete}
                     />
 
                 )
