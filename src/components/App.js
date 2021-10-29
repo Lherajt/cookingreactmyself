@@ -1,9 +1,12 @@
-import React, { useState, useContext } from 'react'
+// Only createContext, export the context and useContext(contextName) where getting things from it
+import React, { useState } from 'react'
 import RecipeList from './RecipeList'
 import { v4 as uuidv4 } from 'uuid';
 import '../css/app.css'
 
-let RecipeContext = React.createContext()
+// let RecipeContext = React.createContext()
+// NEED TO EXPORT CONTEXT!
+export const RecipeContext = React.createContext()
 
 
 
@@ -12,12 +15,13 @@ let RecipeContext = React.createContext()
 function App() {
   const [recipes, setRecipes] = useState(newRecipes)
 
-  RecipeContext = {
+  const RecipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete
   }
 
   function handleRecipeAdd(){
+    // need to create the element to add
     const newRecipe = {
       id: uuidv4(),
       name: 'Recipe Name 3',
@@ -35,10 +39,11 @@ function App() {
         }
       ]
     }
-    // Need to setRecipes as an array
+    // Need to setRecipes as an array, inside array we can set it to ...recipes and after change the added element
     setRecipes([...recipes, newRecipe])
   }
 
+  // pass it the key id to know which recipe to filter out  
   function handleRecipeDelete(id){
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
@@ -46,13 +51,13 @@ function App() {
   return (
     <>
       <div>
-        <RecipeContext.Provider value={RecipeContext}>
+        <RecipeContext.Provider value={RecipeContextValue}>
 
           <RecipeList 
           // Not rendering more than once => doesn't need key
           recipes={recipes}
-          handleRecipeAdd={handleRecipeAdd}
-          handleRecipeDelete={handleRecipeDelete}
+          // handleRecipeAdd={handleRecipeAdd}
+          // handleRecipeDelete={handleRecipeDelete}
           // {...newRecipes}
           // key={newRecipes.id}
 
