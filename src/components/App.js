@@ -1,19 +1,43 @@
 // Only createContext, export the context and useContext(contextName) where getting things from it
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import RecipeList from './RecipeList'
 import { v4 as uuidv4 } from 'uuid';
 import '../css/app.css'
+import RecipeEdit from './RecipeEdit';
 
 // let RecipeContext = React.createContext()
 // NEED TO EXPORT CONTEXT!
 export const RecipeContext = React.createContext()
 
-
+const STORAGE_KEY = 'recipe.storageKey'
 
 
 
 function App() {
   const [recipes, setRecipes] = useState(newRecipes)
+
+  // useEffect(() => {
+  //   const storedRecipes = localStorage.getItem(STORAGE_KEY, JSON.stringify(recipes))
+  //   if storedRecipes !== null ? localStorage.setItem(STORAGE_KEY, storedRecipes)
+  // }, [recipes])
+
+  // useEffect(() => {
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
+  // }, [recipes]);
+
+
+// first make variable for storedData and the if there is anything setRecipes(Json.parse(storedData))
+  useEffect(() => {
+    const recipeJSON = localStorage.getItem(STORAGE_KEY)
+    if (recipeJSON != null) setRecipes(JSON.parse(recipeJSON))
+    // run once
+  }, [])
+
+  // setItem(storage_name, set to JSON.stringify(what))
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes))
+    // run every time recipes changes
+  }, [recipes])
 
   const RecipeContextValue = {
     handleRecipeAdd,
@@ -61,6 +85,9 @@ function App() {
           // {...newRecipes}
           // key={newRecipes.id}
 
+          />
+          <RecipeEdit
+            
           />
         </RecipeContext.Provider>
         

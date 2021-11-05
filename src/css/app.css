@@ -2,6 +2,7 @@
 @import './recipe-list.css';
 @import './recipe.css';
 @import './ingredient.css';
+@import './recipe-edit.css';
 
 :root{
     --color-background-dark: hsl(0, 0%, 15%);
@@ -16,6 +17,7 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
     background: var(--color-background-dark);
     color: var(--color-light);
 }
