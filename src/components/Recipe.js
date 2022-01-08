@@ -18,7 +18,7 @@ export default function Recipe(props) {
     // const [handleRecipeDelete] = useContext(RecipeContext)
 
 // Curly braces name of function declaration, useContext(nameOfContext)
-    const {handleRecipeDelete} = useContext(RecipeContext)
+    const {handleRecipeDelete, handleRecipeSelect} = useContext(RecipeContext)
 
     
 
@@ -29,7 +29,10 @@ export default function Recipe(props) {
             <span className="recipe-name">{name}</span>
             <div className="recipe-buttons">
 
-                <button className="button edit-button">
+                <button className="button edit-button"
+                onClick={() => handleRecipeSelect(id)}
+                
+                >
                     Edit
                 </button>
                 <button

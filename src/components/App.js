@@ -15,6 +15,16 @@ const STORAGE_KEY = 'recipe.storageKey'
 
 function App() {
   const [recipes, setRecipes] = useState(newRecipes)
+  const [selectedRecipeId, setSelectedRecipeId] = useState()
+  // Research difference in return value of find vs filter, only find works
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
+  // const selectedRecipe = recipes.filter(recipe => recipe.id === selectedRecipeId)
+
+
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id)
+  }
+  console.log(selectedRecipe)
 
   // useEffect(() => {
   //   const storedRecipes = localStorage.getItem(STORAGE_KEY, JSON.stringify(recipes))
@@ -41,7 +51,8 @@ function App() {
 
   const RecipeContextValue = {
     handleRecipeAdd,
-    handleRecipeDelete
+    handleRecipeDelete,
+    handleRecipeSelect
   }
 
   function handleRecipeAdd(){
@@ -86,9 +97,11 @@ function App() {
           // key={newRecipes.id}
 
           />
-          <RecipeEdit
-            
-          />
+
+          {/* <RecipeEdit
+            recipe={selectedRecipe}
+          /> */}
+          {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
         </RecipeContext.Provider>
         
       </div>
@@ -107,10 +120,12 @@ const newRecipes = [
     instructions: "1. Put salt on chicken\n2. Put chicken in oven\n3. Eat chicken",
     ingredients: [
       {
+        id: uuidv4(),
         name: 'salt',
         amount: '1tbs'
       },
       {
+        id: uuidv4(),
         name: 'chicken',
         amount: '1lb'
       }
@@ -124,10 +139,12 @@ const newRecipes = [
     instructions: '1. get bacon 2. Put salt on chicken 3. Eat chicken',
     ingredients: [
       {
+        id: uuidv4(),
         name: 'pepper',
         amount: '2tbs'
       },
       {
+        id: uuidv4(),
         name: 'bacon',
         amount: '2lb'
       }
