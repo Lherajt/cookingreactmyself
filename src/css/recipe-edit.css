@@ -1,7 +1,17 @@
 .recipe-edit {
-    max-width: 50%;
-    position: fixed;
+    position: absolute;
+    /* width: clamp(200px, 50%, 50vw); */
+    width: clamp(200px, );
+    padding: 12px;
     right: 0;
     top: 0;
-    background-color: pink;
+    overflow: hidden;
+}
+
+.recipe-edit .recipe-edit__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 0;
 }

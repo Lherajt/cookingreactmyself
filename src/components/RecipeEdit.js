@@ -1,14 +1,14 @@
 import React from 'react'
 
 export default function RecipeEdit({recipe}) {
-    // const {
-    //     id,
-    //     name,
-    //     cookTime,
-    //     servings,
-    //     // ingredients,
-    //     instructions
-    // } = recipe
+    const {
+        id,
+        name,
+        cookTime,
+        servings,
+        // ingredients,
+        instructions
+    } = recipe
     return (
         <>
         {/* {console.log(`props object is: ${props}`)} */}
@@ -17,13 +17,35 @@ export default function RecipeEdit({recipe}) {
 
         {console.log(`These are the props.recipe: ${props.recipe}`)} */}
             <div className="recipe-edit">
-                <div>
-                    Name:
+                <h1>Edit Recipe</h1>
+                <div className="recipe-edit__item">
+                    <div>Name:</div>
+                    <input
+                    value={name}
+                />
+                </div>
+                <div className="recipe-edit__item">
+                    <div>Cook time:</div>
+                    <input
+                    value={cookTime}
+                />
+                </div>
+                <div className="recipe-edit__item">
+                    <div>Servings:</div>
+                    <input
+                    value={servings}
+                />
+                </div>
+                <div className="recipe-edit__item">
+                    <div>Instructions:</div>
+                    <input
+                    type=""
+                    value={instructions}
+                />
                 </div>
                 {/* {console.log(`RECIPE EDIT ${props[0].name}`)} */}
-                <div>
-                    {recipe.name}
-                </div>
+                
+        
                 {/* <div>
                     {id}
                 </div>

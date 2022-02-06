@@ -85,7 +85,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="app">
         <RecipeContext.Provider value={RecipeContextValue}>
 
           <RecipeList 
